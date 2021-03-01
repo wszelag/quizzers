@@ -1,0 +1,25 @@
+{
+  "name": "quizzers",
+  "version": "0.0.1",
+  "description": "Quiz app.",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon server",
+    "build": "./client react-scripts build",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "wsz3lag@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "config": "^3.3.4",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.18"
+  },
+  "devDependencies": {
+    "concurrently": "^6.0.0",
+    "nodemon": "^2.0.7"
+  }
+}
