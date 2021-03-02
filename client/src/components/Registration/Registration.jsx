@@ -13,7 +13,7 @@ const Registration = () => {
     }
 
     axios
-      .post("http://localhost:8000/users", { name, email, password })
+      .post("http://localhost:8000/users/register", { name, email, password })
       .then((res) => {
         console.log(res);
         reset();
