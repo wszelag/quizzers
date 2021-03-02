@@ -4,8 +4,9 @@ const User = require("../models/User");
 
 const router = Router();
 
+//REGISTER
 router.post(
-  "/register",
+  "/",
   check("name", "Name is required").notEmpty(),
   check("name", "Name should contain max. 10 characters").isLength({ max: 10 }),
   check("email", "Please include a valid email").isEmail(),
