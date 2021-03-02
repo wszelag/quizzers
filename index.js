@@ -12,6 +12,6 @@ app.use(cors());
 app.use(json());
 app.use(urlencoded({ extended: false }));
 
-app.use("/users", require("./routes/users"));
+app.use("/users", require("./routes/users/router"));
 
 app.listen(PORT, () => console.log("server is listening"));
