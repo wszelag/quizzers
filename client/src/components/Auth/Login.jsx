@@ -4,18 +4,16 @@ import { connect } from "react-redux";
 import { userLogin } from "../../redux/actions";
 import axiosInstance from "../../config/axios";
 
-const Login = ({ user, userLogin }) => {
+const Login = ({ userLogin }) => {
   const [errorMessage, setErrorMessage] = useState(null);
   const { register, handleSubmit, errors, reset } = useForm();
-
   const onSubmit = async ({ email, password }) => {
     setErrorMessage(null);
-
     await axiosInstance
-      .post("http://localhost:8000/users/login", { email, password })
+      .post("users/login", { email, password })
       .then((res) => {
-        const login = res.data.user;
-        userLogin(login);
+        const { user } = res.data;
+        userLogin(user);
         reset();
       })
       .catch((err) => {
@@ -39,22 +37,23 @@ const Login = ({ user, userLogin }) => {
           ref={register({ required: true, minLength: 6 })}
           placeholder="******"
         />
-        {/* DISPLAY ERRORS */}
+        <input type="submit" />
+      </form>
+      {/* DISPLAY ERRORS */}
+      <div>
         {errors.email && <span>Please, enter an email</span>}
         {errors.password && (
           <span>Password should contain at least 6 characters</span>
         )}
         {errorMessage && <span>{errorMessage}</span>}
-        <input type="submit" />
-      </form>
-      {user.email}
+      </div>
     </>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    currentUser: state.user
   };
 };
 

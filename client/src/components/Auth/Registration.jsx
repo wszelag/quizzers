@@ -4,16 +4,14 @@ import { connect } from "react-redux";
 import { userLogin } from "../../redux/actions";
 import axiosInstance from "../../config/axios";
 
-const Registration = ({ user, userLogin }) => {
+const Registration = ({ userLogin }) => {
   const [errorMessage, setErrorMessage] = useState(null);
   const { register, handleSubmit, errors, reset } = useForm();
-
   const onSubmit = async ({ name, email, password, confirmPassword }) => {
     setErrorMessage(null);
     if (password !== confirmPassword) {
       return setErrorMessage("Passwords are different");
     }
-
     await axiosInstance
       .post("users/register", { name, email, password })
       .then((res) => {
@@ -54,16 +52,17 @@ const Registration = ({ user, userLogin }) => {
           ref={register({ required: true })}
           placeholder="******"
         />
-        {/* DISPLAY ERRORS */}
-        {errors.name && <span>Name should contain 1-10 characters</span>}
-        {errors.email && <span>Please, enter an email</span>}
-        {errors.password && (
-          <span>Password should contain at least 6 characters</span>
-        )}
-        {errors.confirmPassword && <span>Please, confirm your password</span>}
-        {errorMessage && <span>{errorMessage}</span>}
         <input type="submit" />
-        {user.email}
+        {/* DISPLAY ERRORS */}
+        <div>
+          {errors.name && <span>Name should contain 1-10 characters</span>}
+          {errors.email && <span>Please, enter an email</span>}
+          {errors.password && (
+            <span>Password should contain at least 6 characters</span>
+          )}
+          {errors.confirmPassword && <span>Please, confirm your password</span>}
+          {errorMessage && <span>{errorMessage}</span>}
+        </div>
       </form>
     </>
   );
