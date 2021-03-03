@@ -9,12 +9,8 @@ const QuestionSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  wrongAnswers: {
+  answers: {
     type: Array,
-    required: true
-  },
-  goodAnswer: {
-    type: String,
     required: true
   }
 });

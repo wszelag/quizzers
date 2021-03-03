@@ -6,6 +6,6 @@ const router = Router();
 
 //ADD QUESTION
 router.post("/add", (req, res) => addQuestion(req, res));
-router.get("/question", (req, res) => getAllQuestions(req, res));
+router.get("/questions", (req, res) => getAllQuestions(req, res));
 
 module.exports = router;

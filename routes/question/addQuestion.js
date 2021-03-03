@@ -1,13 +1,12 @@
 const Question = require("../../models/Question");
 
 const addQuestion = async (req, res) => {
-  const { question, wrongAnswers, goodAnswer, category } = req.body;
+  const { question, answers, category } = req.body;
   try {
     const questionObj = new Question({
       question,
       category,
-      wrongAnswers,
-      goodAnswer
+      answers
     });
 
     await questionObj.save();
