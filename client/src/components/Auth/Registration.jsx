@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { connect } from "react-redux";
+import { userLogin } from "../../redux/actions";
 import axiosInstance from "../../config/axios";
 
-const Registration = () => {
+const Registration = ({ user, userLogin }) => {
   const [errorMessage, setErrorMessage] = useState(null);
   const { register, handleSubmit, errors, reset } = useForm();
 
@@ -15,7 +17,8 @@ const Registration = () => {
     await axiosInstance
       .post("users/register", { name, email, password })
       .then((res) => {
-        console.log(res);
+        const login = res.data.user;
+        userLogin(login);
         reset();
       })
       .catch((err) => {
@@ -60,9 +63,20 @@ const Registration = () => {
         {errors.confirmPassword && <span>Please, confirm your password</span>}
         {errorMessage && <span>{errorMessage}</span>}
         <input type="submit" />
+        {user.email}
       </form>
     </>
   );
 };
 
-export default Registration;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  };
+};
+
+const mapDispatchToProps = {
+  userLogin
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Registration);
