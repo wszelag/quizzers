@@ -13,5 +13,6 @@ app.use(json());
 app.use(urlencoded({ extended: false }));
 
 app.use("/users", require("./routes/users/router"));
+app.use("/question", require("./routes/question/router"));
 
 app.listen(PORT, () => console.log("server is listening"));
