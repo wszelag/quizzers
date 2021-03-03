@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import axiosInstance from "../../config/axios";
 
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState(null);
@@ -9,7 +9,7 @@ const Login = () => {
   const onSubmit = async ({ email, password }) => {
     setErrorMessage(null);
 
-    axios
+    axiosInstance
       .post("http://localhost:8000/users/login", { email, password })
       .then((res) => {
         console.log("response:", res);

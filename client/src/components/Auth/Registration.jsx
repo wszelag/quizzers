@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import axiosInstance from "../../config/axios";
 
 const Registration = () => {
   const [errorMessage, setErrorMessage] = useState(null);
@@ -12,8 +12,8 @@ const Registration = () => {
       return setErrorMessage("Passwords are different");
     }
 
-    axios
-      .post("http://localhost:8000/users/register", { name, email, password })
+    axiosInstance
+      .post("users/register", { name, email, password })
       .then((res) => {
         console.log(res);
         reset();
