@@ -12,7 +12,7 @@ const Registration = () => {
       return setErrorMessage("Passwords are different");
     }
 
-    axiosInstance
+    await axiosInstance
       .post("users/register", { name, email, password })
       .then((res) => {
         console.log(res);

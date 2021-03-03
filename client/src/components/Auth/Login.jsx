@@ -9,7 +9,7 @@ const Login = () => {
   const onSubmit = async ({ email, password }) => {
     setErrorMessage(null);
 
-    axiosInstance
+    await axiosInstance
       .post("http://localhost:8000/users/login", { email, password })
       .then((res) => {
         console.log("response:", res);
