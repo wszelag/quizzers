@@ -1,11 +1,15 @@
 import React from "react";
-import Registration from "./components/Auth/Registration";
-import Login from "./components/Auth/Login";
+import { ThemeProvider } from "styled-components";
+import GlobalStyle from "./style/GlobalStyle";
+import { light, dark } from "./style/theme";
 
 const App = () => {
   return (
     <>
-      <Login />
+      <ThemeProvider theme={light}>
+        <GlobalStyle />
+        some text
+      </ThemeProvider>
     </>
   );
 };
