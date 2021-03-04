@@ -1,12 +1,14 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./style/GlobalStyle";
-import { light, dark } from "./style/theme";
+import { connect } from "react-redux";
+import { toggleTheme } from "./redux/actions";
+import getTheme from "./tools/getTheme";
 
-const App = () => {
+const App = ({ theme, toggleTheme }) => {
   return (
     <>
-      <ThemeProvider theme={light}>
+      <ThemeProvider theme={getTheme(theme)}>
         <GlobalStyle />
         some text
       </ThemeProvider>
@@ -14,4 +16,14 @@ const App = () => {
   );
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    theme: state.theme
+  };
+};
+
+const mapDispatchToProps = {
+  toggleTheme
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
