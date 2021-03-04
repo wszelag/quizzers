@@ -4,6 +4,20 @@ import { connect } from "react-redux";
 import { userLogin } from "../../redux/actions";
 import axiosInstance from "../../config/axios";
 import { Link } from "react-router-dom";
+import { FullScreenWrapper } from "../../style/FullScreenWrapper";
+import {
+  FormContainer,
+  Title,
+  Footer,
+  Label,
+  SubmitButton,
+  FieldName,
+  Input,
+  Errors,
+  Error,
+  StyledLink
+} from ".././../style/Form.css";
+import { registrationFormFieldsData } from "./data";
 
 const Registration = ({ userLogin }) => {
   const [errorMessage, setErrorMessage] = useState(null);
@@ -26,49 +40,48 @@ const Registration = ({ userLogin }) => {
       });
   };
 
+  const fields = registrationFormFieldsData.map((field) => {
+    const { title, name, type, placeholder, options, id } = field;
+    return (
+      <Label key={id}>
+        <FieldName>{title}</FieldName>
+        <Input
+          name={name}
+          type={type}
+          placeholder={placeholder}
+          ref={register(options)}
+        />
+      </Label>
+    );
+  });
+
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Joe Doe"
-          ref={register({ required: true, maxLength: 10 })}
-        />
-        <input
-          name="email"
-          type="email"
-          ref={register({ required: true })}
-          placeholder="joedoe@gmail.com"
-        />
-        <input
-          name="password"
-          type="password"
-          ref={register({ required: true, minLength: 6 })}
-          placeholder="******"
-        />
-        <input
-          name="confirmPassword"
-          type="password"
-          ref={register({ required: true })}
-          placeholder="******"
-        />
-        <input type="submit" />
+      <FullScreenWrapper>
+        <FormContainer onSubmit={handleSubmit(onSubmit)} size="340px">
+          <Title>Sign up</Title>
+          {fields}
+          <SubmitButton type="submit" />
+        </FormContainer>
         {/* DISPLAY ERRORS */}
-        <div>
-          {errors.name && <span>Name should contain 1-10 characters</span>}
-          {errors.email && <span>Please, enter an email</span>}
+        <Errors>
+          {errors.name && <Error>Name should contain 1-10 characters</Error>}
+          {errors.email && <Error>Please, enter an email</Error>}
           {errors.password && (
-            <span>Password should contain at least 6 characters</span>
+            <Error>Password should contain at least 6 characters</Error>
           )}
-          {errors.confirmPassword && <span>Please, confirm your password</span>}
+          {errors.confirmPassword && (
+            <Error>Please, confirm your password</Error>
+          )}
           {errorMessage && <span>{errorMessage}</span>}
-        </div>
+        </Errors>
 
-        <span>
+        <StyledLink>
           Already have an account?<Link to="/">Sign in</Link>
-        </span>
-      </form>
+        </StyledLink>
+
+        <Footer>footer</Footer>
+      </FullScreenWrapper>
     </>
   );
 };

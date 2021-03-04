@@ -4,6 +4,20 @@ import { connect } from "react-redux";
 import { userLogin } from "../../redux/actions";
 import axiosInstance from "../../config/axios";
 import { Link } from "react-router-dom";
+import { FullScreenWrapper } from "../../style/FullScreenWrapper";
+import {
+  FormContainer,
+  Title,
+  Footer,
+  Label,
+  SubmitButton,
+  FieldName,
+  Input,
+  Errors,
+  Error,
+  StyledLink
+} from ".././../style/Form.css";
+import { loginFormFieldsData } from "./data";
 
 const Login = ({ userLogin }) => {
   const [errorMessage, setErrorMessage] = useState(null);
@@ -23,35 +37,42 @@ const Login = ({ userLogin }) => {
       });
   };
 
+  const fields = loginFormFieldsData.map((field) => {
+    const { title, name, type, placeholder, options, id } = field;
+    return (
+      <Label key={id}>
+        <FieldName>{title}</FieldName>
+        <Input
+          name={name}
+          type={type}
+          placeholder={placeholder}
+          ref={register(options)}
+        />
+      </Label>
+    );
+  });
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          name="email"
-          type="email"
-          ref={register({ required: true })}
-          placeholder="joedoe@gmail.com"
-        />
-        <input
-          name="password"
-          type="password"
-          ref={register({ required: true, minLength: 6 })}
-          placeholder="******"
-        />
-        <input type="submit" />
-      </form>
-      {/* DISPLAY ERRORS */}
-      <div>
-        {errors.email && <span>Please, enter an email</span>}
-        {errors.password && (
-          <span>Password should contain at least 6 characters</span>
-        )}
-        {errorMessage && <span>{errorMessage}</span>}
-      </div>
+      <FullScreenWrapper>
+        <FormContainer onSubmit={handleSubmit(onSubmit)} size="240px">
+          <Title>Sign in</Title>
+          {fields}
+          <SubmitButton type="submit" />
+        </FormContainer>
+        {/* DISPLAY ERRORS */}
+        <Errors>
+          {errors.email && <Error>Please, enter an email</Error>}
+          {errors.password && (
+            <Error>Password should contain at least 6 characters</Error>
+          )}
+          {errorMessage && <Error>{errorMessage}</Error>}
+        </Errors>
 
-      <span>
-        Don't have an account?<Link to="/register">Sign up</Link>
-      </span>
+        <StyledLink>
+          Don't have an account?<Link to="/register">Sign up</Link>
+        </StyledLink>
+        <Footer>footer</Footer>
+      </FullScreenWrapper>
     </>
   );
 };
