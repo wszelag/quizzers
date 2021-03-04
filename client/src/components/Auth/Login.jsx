@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
 import { userLogin } from "../../redux/actions";
 import axiosInstance from "../../config/axios";
+import { Link } from "react-router-dom";
 
 const Login = ({ userLogin }) => {
   const [errorMessage, setErrorMessage] = useState(null);
@@ -47,6 +48,10 @@ const Login = ({ userLogin }) => {
         )}
         {errorMessage && <span>{errorMessage}</span>}
       </div>
+
+      <span>
+        Don't have an account?<Link to="/register">Sign up</Link>
+      </span>
     </>
   );
 };
