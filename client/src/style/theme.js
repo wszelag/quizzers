@@ -5,5 +5,6 @@ export const light = {
 
 export const dark = {
   primary: "rgb(23,23,23)",
+  secondary: "rgb(180, 180, 180)",
   font: "rgb(255,255,255)"
 };
