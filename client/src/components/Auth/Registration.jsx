@@ -58,10 +58,10 @@ const Registration = ({ userLogin }) => {
   return (
     <>
       <FullScreenWrapper>
-        <FormContainer onSubmit={handleSubmit(onSubmit)} size="340px">
+        <FormContainer onSubmit={handleSubmit(onSubmit)} size="380px">
           <Title>Sign up</Title>
           {fields}
-          <SubmitButton type="submit" />
+          <SubmitButton type="submit" value="Join" />
         </FormContainer>
         {/* DISPLAY ERRORS */}
         <Errors>
@@ -77,7 +77,7 @@ const Registration = ({ userLogin }) => {
         </Errors>
 
         <StyledLink>
-          Already have an account?<Link to="/">Sign in</Link>
+          Already have an account? <Link to="/">Sign in</Link>
         </StyledLink>
 
         <Footer>footer</Footer>

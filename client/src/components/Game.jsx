@@ -2,13 +2,16 @@ import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import { userLogout } from "../redux/actions";
+import { FullScreenWrapper } from "../style/FullScreenWrapper";
 
 const Game = ({ user, userLogout }) => {
   return (
     <>
       {!user.name && <Redirect to="/" />}
-      <section>Game</section>
-      <button onClick={() => userLogout()}>logout</button>
+      <FullScreenWrapper>
+        Game
+        <button onClick={() => userLogout()}>logout</button>
+      </FullScreenWrapper>
     </>
   );
 };

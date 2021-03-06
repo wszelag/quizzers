@@ -4,7 +4,11 @@ export const light = {
 };
 
 export const dark = {
-  primary: "rgb(23,23,23)",
-  secondary: "rgb(180, 180, 180)",
-  font: "rgb(255,255,255)"
+  background: "rgb(16,37,38)",
+  secondaryBackground: "rgb(90, 104,104)",
+  font: "rgb(255,255,255)",
+  secondaryFont: "rgb(230,230,230)",
+  wrong: "rgb(255,8,1)",
+  correct: "#81971C",
+  link: "#187bcd"
 };
