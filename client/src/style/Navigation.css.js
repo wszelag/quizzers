@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 export const MobileNav = styled.nav`
-  width: ${({ display }) => (display ? "280px" : "50px")};
+  width: 280px;
   height: 50px;
   position: absolute;
-  bottom: 50px;
+  bottom: ${({ isMenuVisible }) => (isMenuVisible ? "50px" : "-50px")};
+
   left: 50%;
   transform: translateX(-50%);
-  transition: 0.4s;
+  transition: 0.3s;
 
   border-radius: 25px;
   line-height: 50px;
@@ -15,11 +16,33 @@ export const MobileNav = styled.nav`
   color: ${({ theme }) => theme.font};
 `;
 
+export const Ghost = styled.div`
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  bottom: ${({ isMenuVisible }) => (!isMenuVisible ? "50px" : "-50px")};
+  left: 50%;
+  transform: translateX(-50%);
+  transition: 0.3s;
+
+  font-size: 20px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 25px;
+  color: ${({ theme }) => theme.font};
+  background-color: ${({ theme }) => theme.secondaryBackground};
+  opacity: 0.8;
+`;
+
 export const StyledUl = styled.ul`
   width: 100%;
   height: 100%;
   list-style-type: none;
-  display: ${({ display }) => (display ? "flex" : "none")};
+  display: flex;
+  font-size: 20px;
 
   overflow: hidden;
 `;

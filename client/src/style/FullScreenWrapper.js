@@ -4,7 +4,7 @@ export const FullScreenWrapper = styled.section`
   width: 100vw;
   height: 100vh;
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
 
   background-color: ${({ theme }) => theme.background};
 `;
