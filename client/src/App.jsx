@@ -4,9 +4,12 @@ import GlobalStyle from "./style/GlobalStyle";
 import { connect } from "react-redux";
 import { toggleTheme } from "./redux/actions";
 import getTheme from "./tools/getTheme";
-import Game from "./components/Game";
 import Login from "./components/Auth/Login";
 import Registration from "./components/Auth/Registration";
+import Profile from "./components/Pages/Profile";
+import Rank from "./components/Pages/Rank";
+import Quiz from "./components/Pages/Quiz";
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -18,7 +21,7 @@ const App = ({ theme, user }) => {
   return (
     <>
       <Router>
-        {user.name && <Redirect to="/game" />}
+        {user.name && <Redirect to="/home/quiz" />}
         <ThemeProvider theme={getTheme(theme)}>
           <GlobalStyle />
           <Switch>
@@ -28,8 +31,14 @@ const App = ({ theme, user }) => {
             <Route path="/register" exact>
               <Registration />
             </Route>
-            <Route path="/game" exact>
-              <Game />
+            <Route path="/home/profile" exact>
+              <Profile />
+            </Route>
+            <Route path="/home/quiz" exact>
+              <Quiz />
+            </Route>
+            <Route path="/home/rank" exact>
+              <Rank />
             </Route>
           </Switch>
         </ThemeProvider>
