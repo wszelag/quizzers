@@ -5,13 +5,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const MenuGhost = ({ setIsMenuVisible, isMenuVisible }) => {
   return (
-    <Ghost
-      isMenuVisible={isMenuVisible}
-      onClick={() => {
-        console.log("herllo");
-        setIsMenuVisible(true);
-      }}
-    >
+    <Ghost isMenuVisible={isMenuVisible} onClick={() => setIsMenuVisible(true)}>
       <FontAwesomeIcon icon={faPlus} />
     </Ghost>
   );

@@ -1,15 +1,14 @@
 import React from "react";
-import { FullScreenWrapper } from "../../style/FullScreenWrapper";
-import { Redirect } from "react-router-dom";
+import { userLogout } from "../../redux/actions";
 import { connect } from "react-redux";
-import Navigation from "../Nav/Navigation";
 
-const Profile = ({ user }) => {
+const Profile = ({ userLogout }) => {
   return (
     <>
-      {!user.name && <Redirect to="/" />}
-      <FullScreenWrapper>Profile</FullScreenWrapper>
-      <Navigation />
+      <section>
+        Profile
+        <button onClick={() => userLogout()}>klik</button>
+      </section>
     </>
   );
 };
@@ -20,6 +19,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  userLogout
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

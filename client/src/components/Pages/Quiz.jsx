@@ -1,25 +1,11 @@
 import React from "react";
-import { FullScreenWrapper } from "../../style/FullScreenWrapper";
-import Navigation from "../Nav/Navigation";
-import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
 
-const Quiz = ({ user }) => {
+const Quiz = () => {
   return (
     <>
-      {!user.name && <Redirect to="/" />}
-      <FullScreenWrapper>Quiz</FullScreenWrapper>
-      <Navigation />
+      <section>Quiz</section>
     </>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user
-  };
-};
-
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Quiz);
+export default Quiz;

@@ -4,21 +4,21 @@ export const data = [
   {
     id: 0,
     title: "Profile",
-    link: "/home/profile",
+    link: "/profile",
     special: false,
     icon: faUserAlt
   },
   {
     id: 1,
     title: "Quiz",
-    link: "/home/quiz",
+    link: "/quiz",
     special: true,
     icon: faPlay
   },
   {
     id: 2,
     title: "Rank",
-    link: "/home/rank",
+    link: "/rank",
     special: false,
     icon: faListOl
   }
